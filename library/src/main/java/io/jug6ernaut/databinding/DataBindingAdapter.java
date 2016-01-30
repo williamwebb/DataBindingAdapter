@@ -25,7 +25,6 @@ import java.util.List;
  */
 public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> extends RecyclerView.Adapter<DataBindingAdapter.DataBindingViewHolder<DataModel, ViewBinder>> {
 
-  private       OnViewBindCallback<ViewBinder> onViewBindCallback;
   private final List<DataModel>                data = new ArrayList<>();
   private final int                            layoutId;
   private final int                            variableId;
@@ -66,23 +65,11 @@ public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> e
   @Override
   public void onBindViewHolder(DataBindingViewHolder<DataModel, ViewBinder> holder, int position) {
     holder.bind(data.get(position));
-
-    if (onViewBindCallback != null) onViewBindCallback.onViewBind(holder.dataBinding);
   }
 
   @Override
   public int getItemCount() {
     return data.size();
-  }
-
-  /**
-   * Callback used to customize onBind
-   *
-   * @param callback
-   */
-  public DataBindingAdapter setOnBindViewCallback(OnViewBindCallback<ViewBinder> callback) {
-    this.onViewBindCallback = callback;
-    return this;
   }
 
   public interface OnViewBindCallback<BinderType extends ViewDataBinding> {
@@ -112,9 +99,10 @@ public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> e
     }
   }
 
-  @SuppressWarnings("unchecked") @BindingAdapter({"binding_data", "binding_layout", "binding_variable"})
+  @SuppressWarnings("unchecked")
+  @BindingAdapter({"databinding:binding_data", "databinding:binding_layout", "databinding:binding_variable"})
   public static void loadImage(RecyclerView view, List binding_data, int layoutId, String bindingVariableId) {
-    DataBindingAdapter adapter = createBindingAdapter(view.getContext(),layoutId,bindingVariableId);
+    DataBindingAdapter adapter = DataBindingAdapter.createBindingAdapter(view.getContext(),layoutId,bindingVariableId);
     adapter.setData(binding_data);
     view.setAdapter(adapter);
     view.getAdapter().notifyDataSetChanged();
