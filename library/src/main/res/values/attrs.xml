@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BindingAdapter">
+        <attr name="binding_layout" format="reference"/>
+        <attr name="binding_variable" format="string"/>
+        <attr name="binding_data" format="string"/>
+    </declare-styleable>
+</resources>
