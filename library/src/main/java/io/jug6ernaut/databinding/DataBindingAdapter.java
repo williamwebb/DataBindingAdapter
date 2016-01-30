@@ -48,6 +48,7 @@ public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> e
    * @param layoutId   layout used by the adapter
    * @param variableId variable id used to set DataBinding. Ex: BR.data
    */
+  @SuppressWarnings("unchecked")
   public DataBindingAdapter(@LayoutRes int layoutId, @AnyRes int variableId) {
     this((List<DataModel>) Collections.emptyList(),layoutId,variableId);
   }
@@ -70,10 +71,6 @@ public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> e
   @Override
   public int getItemCount() {
     return data.size();
-  }
-
-  public interface OnViewBindCallback<BinderType extends ViewDataBinding> {
-    void onViewBind(BinderType type);
   }
 
   static class DataBindingViewHolder<DataModel, ViewBinder extends ViewDataBinding> extends ViewHolder {
@@ -99,7 +96,7 @@ public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> e
     }
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({"unchecked","unused"})
   @BindingAdapter({"databinding:binding_data", "databinding:binding_layout", "databinding:binding_variable"})
   public static void setAdapter(RecyclerView view, List binding_data, int layoutId, String bindingVariableId) {
     DataBindingAdapter adapter = DataBindingAdapter.createBindingAdapter(view.getContext(),layoutId,bindingVariableId);
