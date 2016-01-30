@@ -101,7 +101,7 @@ public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> e
 
   @SuppressWarnings("unchecked")
   @BindingAdapter({"databinding:binding_data", "databinding:binding_layout", "databinding:binding_variable"})
-  public static void loadImage(RecyclerView view, List binding_data, int layoutId, String bindingVariableId) {
+  public static void setAdapter(RecyclerView view, List binding_data, int layoutId, String bindingVariableId) {
     DataBindingAdapter adapter = DataBindingAdapter.createBindingAdapter(view.getContext(),layoutId,bindingVariableId);
     adapter.setData(binding_data);
     view.setAdapter(adapter);
