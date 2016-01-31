@@ -26,9 +26,6 @@ android {
 }
 dependencies {
     provided 'com.android.support:recyclerview-v7:23.1.1'
-
-//    provided 'com.google.android:android:4.1.1.4'
-//    provided 'com.android.databinding:adapters:1.0-rc5'
 }
 
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
