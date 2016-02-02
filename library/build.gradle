@@ -23,6 +23,11 @@ android {
     dataBinding {
         enabled = true
     }
+    lintOptions {
+        textReport true
+        textOutput 'stdout'
+        abortOnError false
+    }
 }
 dependencies {
     provided 'com.android.support:recyclerview-v7:23.1.1'
