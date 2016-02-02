@@ -1,7 +1,7 @@
 Saber [![Build Status](https://travis-ci.org/jug6ernaut/DataBindingAdapter.svg?branch=master)](https://travis-ci.org/jug6ernaut/DataBindingAdapter)
 ============
 
-Android RecyclerView powered by DataBinding
+Android RecyclerView Adapter powered by DataBinding.
 
 Usage
 =====
