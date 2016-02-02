@@ -36,7 +36,7 @@ or Gradle:
 
 
 ```groovy
-compile 'io.jug6ernaut.databindingadapter:1.0.0'
+compile 'io.jug6ernaut:databindingadapter:1.0.0'
 ```
 
 
