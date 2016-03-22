@@ -32,6 +32,7 @@ android {
         warningsAsErrors true
         abortOnError true
 
+        disable 'GradleDependency' // for now disable until merged. https://code.google.com/p/android/issues/detail?id=203270
         disable 'InvalidPackage'
         disable 'GoogleAppIndexingWarning'
     }
