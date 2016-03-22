@@ -10,9 +10,9 @@ Usage
 ```xml
 <android.support.v7.widget.RecyclerView
 	...
-	databinding:binding_data="@{dataToBind}"
-	databinding:binding_layout="@{@layout/layoutName}"
-	databinding:binding_variable='@{"bindingVariableName"}'
+	app:binding_data="@{dataToBind}"
+	app:binding_layout="@{@layout/layoutName}"
+	app:binding_variable='@{"bindingVariableName"}'
 />
 ```
 Thats it!
