@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.databinding.tool.util.Preconditions;
 import android.support.annotation.AnyRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -60,7 +61,8 @@ public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> e
 
   public void setData(List<DataModel> data) {
     this.data.clear();
-    this.data.addAll(data);
+
+    if(data != null) this.data.addAll(data);
   }
 
   @Override
@@ -97,28 +99,48 @@ public class DataBindingAdapter<DataModel, ViewBinder extends ViewDataBinding> e
   }
 
   @SuppressWarnings({"unchecked","unused"})
-  @BindingAdapter({"databinding:binding_data", "databinding:binding_layout", "databinding:binding_variable"})
+  @BindingAdapter({"binding_data", "binding_layout", "binding_variable"})
   public static void setAdapter(RecyclerView view, List binding_data, int layoutId, String bindingVariableId) {
-    DataBindingAdapter adapter = DataBindingAdapter.createBindingAdapter(view.getContext(),layoutId,bindingVariableId);
+    if(binding_data == null || binding_data.isEmpty()) return;
+
+    DataBindingAdapter adapter;
+    if(view.getAdapter() == null || (!(view.getAdapter() instanceof DataBindingAdapter))) {
+      try {
+        adapter = DataBindingAdapter.createBindingAdapter("BR", view.getContext(), layoutId, bindingVariableId);
+      } catch (BindingException e) {
+          throw new RuntimeException("Failed to load DataBinding BR class. If you are using Proguard add proguard rule \"-keep class **.BR {*;}\"",e);
+      }
+    } else {
+      adapter = (DataBindingAdapter) view.getAdapter();
+    }
+
     adapter.setData(binding_data);
     view.setAdapter(adapter);
     view.getAdapter().notifyDataSetChanged();
   }
 
-  private static DataBindingAdapter createBindingAdapter(Context context, int bindingLayout, String bindingVariable) {
+  private static DataBindingAdapter createBindingAdapter(String className, Context context, int bindingLayout, String bindingVariable) throws BindingException {
     try {
-      Class BR_CLASS = Class.forName(context.getPackageName() + ".BR");
+      String full_path = context.getPackageName() + "." + className;
+
+      Class BR_CLASS = Class.forName(full_path);
       Field BR = BR_CLASS.getField(bindingVariable);
 
       int bindingVariableId = BR.getInt(null);
 
       return new DataBindingAdapter(bindingLayout, bindingVariableId);
     } catch (ClassNotFoundException e) {
-      throw new RuntimeException(e);
+      throw new BindingException(e);
     } catch (IllegalAccessException e) {
-      throw new RuntimeException(e);
+      throw new BindingException(e);
     } catch (NoSuchFieldException e) {
-      throw new RuntimeException(e);
+      throw new BindingException(e);
+    }
+  }
+
+  private static class BindingException extends Exception {
+    public BindingException(Exception e) {
+      super(e);
     }
   }
 
