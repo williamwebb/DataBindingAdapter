@@ -1,18 +1,19 @@
 language: android
 
-android:
-  components:
-    - tools
-    - build-tools-23.0.3
-    - android-23
-    - extra-android-m2repository
-    - platform-tools
-  licenses:
-    - android-sdk-license-5be876d5
-
 jdk:
   - oraclejdk7
   - oraclejdk8
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-23.0.3
+    - android-23
+    - extra-android-support
+    - extra-android-m2repository
+  licenses:
+    - android-sdk-license-5be876d5
 
 branches:
   except:
