@@ -23,8 +23,3 @@ notifications:
   email: true
 
 sudo: false
-
-cache:
-  directories:
-    - $HOME/.m2
-    - $HOME/.gradle
