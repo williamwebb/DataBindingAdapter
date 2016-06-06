@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"
+                app:layoutManager="@{LayoutManagers.linear()}"
                 app:binding_data="@{model.rows}"
                 app:binding_layout="@{@layout/row}"
                 app:binding_variable='@{"model"}'
