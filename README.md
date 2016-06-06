@@ -1,4 +1,4 @@
-DataBindingAdapter [![Build Status](https://travis-ci.org/jug6ernaut/DataBindingAdapter.svg?branch=master)](https://travis-ci.org/jug6ernaut/DataBindingAdapter)
+DataBindingAdapter [![Build Status](https://travis-ci.org/jug6ernaut/DataBindingAdapter.svg?branch=master)](https://travis-ci.org/williamwebb/DataBindingAdapter)
 ============
 
 Android RecyclerView Adapter powered by DataBinding.
