@@ -10,6 +10,7 @@ Usage
 ```xml
 <android.support.v7.widget.RecyclerView
 	...
+	app:layoutManager="@{LayoutManagers.linear()}"
 	app:binding_data="@{dataToBind}"
 	app:binding_layout="@{@layout/layoutName}"
 	app:binding_variable='@{"bindingVariableName"}'
@@ -28,7 +29,7 @@ Download the latest JAR via Maven:
 <dependency>
   <groupId>io.jug6ernaut</groupId>
   <artifactId>databindingadapter</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -36,7 +37,7 @@ or Gradle:
 
 
 ```groovy
-compile 'io.jug6ernaut:databindingadapter:1.0.0'
+compile 'io.jug6ernaut:databindingadapter:1.0.1'
 ```
 
 
