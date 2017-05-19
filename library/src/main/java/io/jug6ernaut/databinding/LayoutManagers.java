@@ -23,7 +23,7 @@ public class LayoutManagers {
     view.setLayoutManager(factory.build(view.getContext()));
   }
 
-  public static interface LayoutManagerFactory {
-    public RecyclerView.LayoutManager build(Context context);
+  public interface LayoutManagerFactory {
+    RecyclerView.LayoutManager build(Context context);
   }
 }

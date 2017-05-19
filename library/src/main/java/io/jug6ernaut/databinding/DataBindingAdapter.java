@@ -4,7 +4,6 @@ import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.databinding.tool.util.Preconditions;
 import android.support.annotation.AnyRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
